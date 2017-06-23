@@ -10,10 +10,17 @@ import static android.R.id.input;
 
 public class User extends Player {
 
+    private String name;
     private Scanner sc;
 
-    public User(){
+    public User(String name){
+
+        this.name = name;
         this.sc = new Scanner(System.in);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void offeredCard(Deck deck){

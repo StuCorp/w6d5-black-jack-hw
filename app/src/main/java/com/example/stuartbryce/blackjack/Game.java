@@ -36,7 +36,32 @@ public class Game {
         player.offeredCard(deck);
     }
 
+//    return 1 for user win, 0 for draw, -1 for dealer win
+    public int assessResult(User user){
 
+        if (user.bestScore() == dealer.bestScore()){
+            return 0;
+        }
+
+        return user.bestScore() > dealer.bestScore() ? 1 : -1;
+    }
+
+
+    public void displayResults(int result, User user) {
+        String verb = "";
+        switch (result) {
+            case 0:
+                verb = "draws with";
+                break;
+            case 1:
+                verb = "beats";
+                break;
+            case -1:
+                verb = "loses to";
+                break;
+        }
+        System.out.println(String.format("%s %s to the dealer!", user.getName(), verb));
+    }
 
     public void run(){
 
