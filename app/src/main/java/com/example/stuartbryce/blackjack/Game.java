@@ -32,8 +32,23 @@ public class Game {
         return player.bestScore() == 21;
         }
 
+    public void checkPlayersForBlackJack(){
+        for (User user : users){
+            if (checkForBlackJack(user)){
+                displayResults(1, user);
+                users.remove(user);
+            }
+        }
+    }
+
     public void offerCards(Player player){
         player.offeredCard(deck);
+    }
+
+    public void offerCardsToUsers(){
+        for (User user : users){
+            offerCards(user);
+        }
     }
 
 //    return 1 for user win, 0 for draw, -1 for dealer win
@@ -64,6 +79,11 @@ public class Game {
     }
 
     public void run(){
+        initialDeal();
+        checkPlayersForBlackJack();
+        offerCardsToUsers();
+//        once players are offered cards, dealer reveals second card and we check again for BJ
+//        then the dealer can take a card if doesn't have BJ
 
     }
 
