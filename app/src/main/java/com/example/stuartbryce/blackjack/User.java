@@ -1,4 +1,8 @@
 package com.example.stuartbryce.blackjack;
+import java.util.Scanner;
+
+import static android.R.id.input;
+
 
 /**
  * Created by stuartbryce on 2017-06-23.
@@ -6,13 +10,19 @@ package com.example.stuartbryce.blackjack;
 
 public class User extends Player {
 
+    private Scanner sc;
+
+    public User(){
+        this.sc = new Scanner(System.in);
+    }
+
     public void offeredCard(Deck deck){
         String answer = userTwistOrStick();
 
-        if (answer == "no"){
+        if (answer.equals("stick")){
             return;
         }
-        if (answer == "yes"){
+        if (answer.equals("twist")){
             takeCard(deck);
             if (isBust()) {
                 return;
@@ -22,7 +32,13 @@ public class User extends Player {
     }
 
     public String userTwistOrStick(){
-
+        System.out.println("Would you like to stick or twist?");
+        String answer = "placeholder";
+        do {
+             answer = sc.nextLine().toLowerCase();
+//            char choice = input.charAt(0);
+        } while(!(answer.equals("stick") || answer.equals("twist")));
+        return answer;
     }
 
 
