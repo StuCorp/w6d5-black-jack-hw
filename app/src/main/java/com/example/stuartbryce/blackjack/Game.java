@@ -27,4 +27,21 @@ public class Game {
         }
     }
 
+//    check for first two cards equalling bj.
+    public boolean checkForBlackJack(Player player){
+        return player.bestScore() == 21;
+        }
+
+    public void offerCards(Player player){
+        player.offeredCard(deck);
+    }
+
+
+
+    public void run(){
+
+    }
+
+
+
 }

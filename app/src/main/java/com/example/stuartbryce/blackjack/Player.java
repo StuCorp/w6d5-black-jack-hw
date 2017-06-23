@@ -35,7 +35,7 @@ public abstract class Player {
         hand.add(deck.removeCard());
     }
 
-    public void offeredCard(){}
+    public void offeredCard(Deck deck){}
 
     public ArrayList<Integer> possibleScores(){
         ArrayList<Integer> results = new ArrayList<Integer>();
