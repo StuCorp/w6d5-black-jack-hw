@@ -29,11 +29,10 @@ public class Deck {
 
             }
         }
-    }
-
-    public void shuffleDeck(){
         Collections.shuffle(cards);
     }
+
+//    public void shuffleDeck(){Collections.shuffle(cards);    }
 
     public Card removeCard(){
         return cards.remove(0);
