@@ -13,6 +13,7 @@ public abstract class Player {
     private ArrayList<Card> hand;
 
     public Player(){
+        hand = new ArrayList<Card>();
 
     }
 

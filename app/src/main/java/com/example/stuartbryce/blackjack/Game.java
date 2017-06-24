@@ -64,13 +64,18 @@ public class Game {
 
     public void checkAllResults(){
         for (User user : users){
-            assessResult(user);
+            int result = assessResult(user);
+            displayResults(result, user);
         }
     }
 
 //    return 1 for user win, 0 for draw, -1 for dealer win
     public int assessResult(User user){
 
+//        user is bust scenario
+        if (user.bestScore() == 99){
+            return -1;
+        }
         if (user.bestScore() == dealer.bestScore()){
             return 0;
         }
@@ -95,7 +100,18 @@ public class Game {
         System.out.println(String.format("%s %s to the dealer!", user.getName(), verb));
     }
 
+    public void checkDealerForBust(){
+        if (dealer.bestScore() == 99){
+            for(User user : users){
+                displayResults(1, user);
+            }
+            return;
+        }
+
+    }
+
     public void run(){
+        deck.fillDeck();
         initialDeal();
         checkPlayersForBlackJack();
         offerCardsToUsers();
@@ -103,6 +119,7 @@ public class Game {
 //        then the dealer can take a card if doesn't have BJ
         checkDealerForBlackJack();
         offerCards(dealer);
+        checkDealerForBust();
         checkAllResults();
         return;
     }

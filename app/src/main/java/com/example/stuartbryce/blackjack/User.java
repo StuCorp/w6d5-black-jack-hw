@@ -44,7 +44,7 @@ public class User extends Player {
     }
 
     public String userTwistOrStick(){
-        System.out.println("Would you like to stick or twist?");
+        System.out.println(String.format("%s, would you like to stick or twist?", this.name));
         String answer = "placeholder";
         do {
              answer = userGetInput();
