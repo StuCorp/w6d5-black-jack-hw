@@ -32,21 +32,35 @@ public class Game {
         return player.bestScore() == 21;
         }
 
+    public void checkPlayerForBlackJack(User user, ArrayList<Integer> userIndexNums){
+        if (checkForBlackJack(user)){
+            System.out.println(String.format("%s has BlackJack!", user.getName()));
+            displayResults(1, user);
+//                users.remove(user);
+            userIndexNums.add(users.indexOf(user));
+        }
+        }
+
     public void checkPlayersForBlackJack(){
+        ArrayList<Integer> bjUsersIndexNum = new ArrayList<>();
         for (User user : users){
-            if (checkForBlackJack(user)){
-                displayResults(1, user);
-                users.remove(user);
+            checkPlayerForBlackJack(user, bjUsersIndexNum);
+        }
+        if (bjUsersIndexNum.size() > 0){
+            for (int indexNum : bjUsersIndexNum){
+                users.remove(indexNum);
             }
         }
     }
 
+
     public void checkDealerForBlackJack() {
         if (checkForBlackJack(dealer)) {
             for (User user : users) {
+                System.out.println("Dealer has BlackJack!");
                 displayResults(-1, user);
-                users.remove(user);
             }
+            users.clear();
         }
     }
 
@@ -62,10 +76,12 @@ public class Game {
         }
     }
 
-    public void checkAllResults(){
-        for (User user : users){
-            int result = assessResult(user);
-            displayResults(result, user);
+    public void checkAllResults() {
+        if (users.size() > 0) {
+            for (User user : users) {
+                int result = assessResult(user);
+                displayResults(result, user);
+            }
         }
     }
 
@@ -101,13 +117,34 @@ public class Game {
     }
 
     public void checkDealerForBust(){
-        if (dealer.bestScore() == 99){
+        if (dealer.isBust()){
             for(User user : users){
+                System.out.println("Dealer is bust!");
                 displayResults(1, user);
             }
-            return;
+            users.clear();
+            }
         }
 
+
+    public void checkForUserBust(User user, ArrayList<Integer> indexCollector){
+        if (user.isBust()){
+            System.out.println(String.format("%s is bust!", user.getName()));
+            displayResults(-1, user);
+            indexCollector.add(users.indexOf(user));
+        }
+    }
+
+    public void checkForPlayersBust(){
+        ArrayList<Integer> busterUsersIndexNum = new ArrayList<>();
+        for (User user : users){
+            checkForUserBust(user, busterUsersIndexNum);
+        }
+        if (busterUsersIndexNum.size() > 0){
+            for (int indexNum : busterUsersIndexNum){
+                users.remove(indexNum);
+            }
+        }
     }
 
     public void run(){
@@ -117,7 +154,10 @@ public class Game {
         offerCardsToUsers();
 //        once players are offered cards, dealer reveals second card and we check again for BJ
 //        then the dealer can take a card if doesn't have BJ
+//        checkusersforBust
+        checkForPlayersBust();
         checkDealerForBlackJack();
+//        need to add guards to stop these happening if all players are bust or dealer has BJ...and above for user BJ
         offerCards(dealer);
         checkDealerForBust();
         checkAllResults();
