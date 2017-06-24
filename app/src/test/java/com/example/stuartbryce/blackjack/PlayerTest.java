@@ -22,23 +22,27 @@ import static org.mockito.Mockito.*;
 public class PlayerTest {
 
     User user;
-    User spyUser;
+//    User spyUser;
     ArrayList<Integer> scores;
 
     @Before
     public void before(){
-        user = new User();
-        spyUser = Mockito.spy(user);
+        user = new User("stu");
+//        spyUser = Mockito.spy(user);
         scores = new ArrayList<Integer>();
     }
 
-    @Test
-    public void testBestScore(){
-        scores.add(12);
-        scores.add(17);
-        scores.add(25);
-        Mockito.when(spyUser.possibleScores()).thenReturn(scores);
-        assertEquals(17, user.bestScore());
+//    @Test
+//    public void testBestScore(){
+//        scores.add(12);
+//        scores.add(17);
+//        scores.add(25);
+//        Mockito.when(spyUser.possibleScores()).thenReturn(scores);
+//        assertEquals(17, user.bestScore());
+//    }
 
+    @Test
+    public void testUserInput(){
+        assertEquals("hi", user.userTwistOrStick() );
     }
 }

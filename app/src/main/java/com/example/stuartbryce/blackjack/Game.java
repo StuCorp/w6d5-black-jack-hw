@@ -41,6 +41,17 @@ public class Game {
         }
     }
 
+    public void checkDealerForBlackJack() {
+        if (checkForBlackJack(dealer)) {
+            for (User user : users) {
+                displayResults(-1, user);
+                users.remove(user);
+            }
+        }
+    }
+
+
+
     public void offerCards(Player player){
         player.offeredCard(deck);
     }
@@ -48,6 +59,12 @@ public class Game {
     public void offerCardsToUsers(){
         for (User user : users){
             offerCards(user);
+        }
+    }
+
+    public void checkAllResults(){
+        for (User user : users){
+            assessResult(user);
         }
     }
 
@@ -84,7 +101,10 @@ public class Game {
         offerCardsToUsers();
 //        once players are offered cards, dealer reveals second card and we check again for BJ
 //        then the dealer can take a card if doesn't have BJ
-
+        checkDealerForBlackJack();
+        offerCards(dealer);
+        checkAllResults();
+        return;
     }
 
 

@@ -38,12 +38,16 @@ public class User extends Player {
         }
     }
 
+    public String userGetInput() {
+        String answer = sc.nextLine().toLowerCase();
+        return answer;
+    }
+
     public String userTwistOrStick(){
         System.out.println("Would you like to stick or twist?");
         String answer = "placeholder";
         do {
-             answer = sc.nextLine().toLowerCase();
-//            char choice = input.charAt(0);
+             answer = userGetInput();
         } while(!(answer.equals("stick") || answer.equals("twist")));
         return answer;
     }
