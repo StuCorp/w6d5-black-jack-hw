@@ -31,19 +31,29 @@ public class Runner {
         return users;
     }
 
+
     public static int askNumPlayers() {
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("Welcome to BJ Supreme");
-        System.out.println("How many players? 1 - 10");
         int answer;
         do {
-            answer = Integer.parseInt(userGetInput());
+            System.out.println("How many players? 1 - 10");
+            while(!sc.hasNextInt() ) {
+                System.out.println("naw, like a *number*!");
+                sc.next();
+            }
+            answer = sc.nextInt();
         } while (!(answer > 0 && answer < 10));
         return answer;
     }
 
+
     public static String userGetInput() {
         return new Scanner(System.in).nextLine();
     }
+
+
 
     public static void setupPlayers(int numPlayers, ArrayList<User> users) {
         int currentPlayer = 1;

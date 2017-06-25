@@ -149,6 +149,11 @@ public class Game {
         }
     }
 
+    public void getUserToHitReturn(){
+        System.out.println("Hit return to continue");
+        Runner.userGetInput();
+
+    }
 
     public void run(){
         deck.fillDeck();
@@ -166,6 +171,7 @@ public class Game {
         checkDealerForBlackJack();
 //        need to add guards to stop these happening if all players are bust or dealer has BJ...and above for user BJ
         offerCards(dealer);
+        getUserToHitReturn();
         checkDealerForBust();
         checkAllResults();
         return;

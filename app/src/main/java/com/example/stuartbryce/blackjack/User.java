@@ -28,6 +28,7 @@ public class User extends Player {
         String answer = userTwistOrStick();
 
         if (answer.equals("stick")){
+            System.out.println();
             return;
         }
         if (answer.equals("twist")){
@@ -36,6 +37,8 @@ public class User extends Player {
 
             if (isBust()) {
                 System.out.println("Uh-oh!");
+                System.out.println();
+
                 return;
             } else
                 offeredCard(deck);

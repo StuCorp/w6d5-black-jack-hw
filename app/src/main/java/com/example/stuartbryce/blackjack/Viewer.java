@@ -2,6 +2,8 @@ package com.example.stuartbryce.blackjack;
 
 import java.util.ArrayList;
 
+import static android.os.Build.VERSION_CODES.M;
+
 /**
  * Created by stuartbryce on 2017-06-25.
  */
@@ -42,7 +44,7 @@ public class Viewer {
 
     public void displayerDealerFirstCard(){
         String firstCard= dealer.getHand().get(0).printCard();
-        System.out.println(String.format("Dealer has %s", firstCard));
+        System.out.println(String.format("Dealer has %s and a MYSTERY CARD!", firstCard));
         System.out.println();
     }
 
