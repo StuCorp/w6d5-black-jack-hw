@@ -35,6 +35,7 @@ public class User extends Player {
             System.out.println(String.format("%s draws a %s!", this.name, getHand().get(getHand().size()-1).printCard()));
 
             if (isBust()) {
+                System.out.println("Uh-oh!");
                 return;
             } else
                 offeredCard(deck);
@@ -47,6 +48,7 @@ public class User extends Player {
     }
 
     public String userTwistOrStick(){
+        System.out.println();
         System.out.println(String.format("Would you like to stick or twist?", this.name));
         String answer = "placeholder";
         do {

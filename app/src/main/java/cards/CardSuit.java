@@ -8,7 +8,7 @@ public enum CardSuit {
 
     HEARTS ("Hearts"),
     DIAMONDS ("Diamonds"),
-    JACKS ("Jacks"),
+    CLUBS ("Clubs"),
     SPADES ("Spades");
 
     private String name;

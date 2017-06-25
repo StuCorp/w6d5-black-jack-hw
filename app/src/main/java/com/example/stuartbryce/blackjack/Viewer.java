@@ -43,6 +43,7 @@ public class Viewer {
     public void displayerDealerFirstCard(){
         String firstCard= dealer.getHand().get(0).printCard();
         System.out.println(String.format("Dealer has %s", firstCard));
+        System.out.println();
     }
 
     public void displayNewCard(User user){
