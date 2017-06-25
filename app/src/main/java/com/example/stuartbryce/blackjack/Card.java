@@ -32,6 +32,6 @@ public class Card {
     }
 
     public String printCard(){
-        return String.format("%d of %s", getValue(), getSuit());
+        return String.format("%s of %s", cardValue, getSuit());
     }
 }

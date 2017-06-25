@@ -72,10 +72,7 @@ public abstract class Player {
         return 99;
     }
 
-
-
-
-
-
-
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
 }

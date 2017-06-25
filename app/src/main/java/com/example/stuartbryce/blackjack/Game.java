@@ -11,11 +11,13 @@ public class Game {
     ArrayList<User> users;
     Dealer dealer;
     Deck deck;
+    Viewer viewer;
 
     public Game(ArrayList<User> users, Dealer dealer){
         this.users = users;
         this.dealer = dealer;
         this.deck = new Deck();
+        this.viewer = new Viewer(users, dealer);
     }
 
     public void initialDeal(){
@@ -150,12 +152,16 @@ public class Game {
     public void run(){
         deck.fillDeck();
         initialDeal();
+        viewer.displayUserHands();
+        viewer.displayerDealerFirstCard();
         checkPlayersForBlackJack();
+
         offerCardsToUsers();
 //        once players are offered cards, dealer reveals second card and we check again for BJ
 //        then the dealer can take a card if doesn't have BJ
 //        checkusersforBust
         checkForPlayersBust();
+        viewer.displayerDealerHand();
         checkDealerForBlackJack();
 //        need to add guards to stop these happening if all players are bust or dealer has BJ...and above for user BJ
         offerCards(dealer);

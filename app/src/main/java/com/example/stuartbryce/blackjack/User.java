@@ -24,6 +24,7 @@ public class User extends Player {
     }
 
     public void offeredCard(Deck deck){
+        displayUserHand();
         String answer = userTwistOrStick();
 
         if (answer.equals("stick")){
@@ -31,6 +32,8 @@ public class User extends Player {
         }
         if (answer.equals("twist")){
             takeCard(deck);
+            System.out.println(String.format("%s draws a %s!", this.name, getHand().get(getHand().size()-1).printCard()));
+
             if (isBust()) {
                 return;
             } else
@@ -44,7 +47,7 @@ public class User extends Player {
     }
 
     public String userTwistOrStick(){
-        System.out.println(String.format("%s, would you like to stick or twist?", this.name));
+        System.out.println(String.format("Would you like to stick or twist?", this.name));
         String answer = "placeholder";
         do {
              answer = userGetInput();
@@ -52,5 +55,19 @@ public class User extends Player {
         return answer;
     }
 
+
+
+    public String formatHand(){
+        String fullHand = "";
+        for (Card card : getHand()){
+            fullHand += card.printCard() + ", ";
+        }
+        return fullHand;
+    }
+
+    public void displayUserHand(){
+        String fullHand = formatHand();
+        System.out.println(String.format("%s, you have %s", getName(), fullHand));
+    }
 
 }
